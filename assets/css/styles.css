@@ -1,180 +1,226 @@
-/* Variáveis globais */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+
+/* Define as variáveis de cor para os temas */
 :root {
-    --primary-color: #e63946; 
-    --primary-color-contrast: #ffffff; 
-    --field-background-color: #121212; 
-
-/* Tema Claro */
-.light-theme {
-    --page-background: linear-gradient(180deg, #f9f9f9 0%, #ffffff 65%, rgba(255, 255, 255, 0.85) 100%);
-    --header-background-color: #f0f0f0;
-    --highlight-color: #222222; 
-    --featured-font-family: "Poppins", sans-serif;
-    --character-top-image-color: #ffffff; 
-    --character-bottom-image-color: #dcdcdc; 
-    --card-background: #ffffff;
-    --card-border: rgba(0, 0, 0, 0.1);
-    --text-primary: #222222; 
-    --text-secondary: #555555; 
-    --accent-color: #e63946; 
+    --body-bg-color: #fafafa;
+    --text-color: #202020;
+    --title-color: #000000;
+    --primary-color: #b91c1c;
+    --secondary-color: #ffffff;
+    --invert-filter: invert(0);
 }
 
-/* Tema Escuro */
 .dark-theme {
-    --page-background: linear-gradient(180deg, #1a1a1a 0%, #2c2c2c 65%, rgba(44, 44, 44, 0.85) 100%);
-    --header-background-color: #2b1a1a;
-    --highlight-color: #f0f0f0; 
-    --featured-font-family: "Poppins", sans-serif;
-    --character-top-image-color: #222; 
-    --character-bottom-image-color: rgba(255, 255, 255, 0.15); 
-    --card-background: #2a2a2a;
-    --card-border: rgba(255, 255, 255, 0.1);
-    --text-primary: #ffffff; 
-    --text-secondary: #cccccc; 
-    --accent-color: #ff6b6b; 
+    --body-bg-color: #000000;
+    --text-color: #fafafa;
+    --title-color: #ffffff;
+    --primary-color: #b91c1c;
+    --secondary-color: #202020;
+    --invert-filter: invert(1);
 }
 
-/* Reset básico e transições */
+/* Estilos Globais */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+    font-family: 'Poppins', sans-serif;
 }
 
-/* Estilos do corpo da página */
 body {
-    background: var(--page-background);
-    color: var(--text-primary);
-    font-family: var(--featured-font-family);
-    min-height: 100vh;
-    padding: 20px;
+    background-color: var(--body-bg-color);
+    color: var(--text-color);
+    transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-/* Container principal */
+h1, h2, h3 {
+    color: var(--title-color);
+    margin-bottom: 1rem;
+}
+
+p {
+    line-height: 1.6;
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 2rem;
 }
 
 /* Cabeçalho */
 header {
+    background-image: url('../images/banner/florest.webp');
+    background-size: cover;
+    background-position: center;
+    padding: 4rem 2rem;
+    text-align: center;
+    border-bottom: 5px solid var(--primary-color);
+    
+}
+header img{
+    
+}
+
+.header-content {
+    max-width: 600px;
+    margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    padding: 20px 0;
-    margin-bottom: 40px;
-    border-bottom: 2px solid var(--accent-color);
+    gap: 1.5rem;
 }
 
-.logo {
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--accent-color);
+.header-content img {
+    width: 100%;
+    max-width: 400px;
 }
 
-/* Botão de troca de tema */
-.theme-switcher {
-    background-color: var(--accent-color);
-    color: var(--primary-color-contrast);
+.header-content p {
+    font-size: 1.5rem;
+    color: var(--body-bg-color);
+
+}
+
+.invert-element {
+    filter: var(--invert-filter);
+    transition: filter 0.5s ease;
+}
+
+#switch-theme-button, #btnSubscribe {
+    background-color: var(--primary-color);
+    color: #ffffff;
     border: none;
     padding: 12px 24px;
-    border-radius: 8px;
-    font-weight: 600;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
     cursor: pointer;
-    font-family: 'Poppins', sans-serif;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    transition: transform 0.2s ease, background-color 0.3s;
 }
 
-.theme-switcher:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+#switch-theme-button:hover, #btnSubscribe:hover {
+    transform: scale(1.05);
+    background-color: #991b1b;
 }
 
-/* Seção Hero */
-.hero {
-    text-align: center;
-    margin-bottom: 60px;
+/* Seções Principais */
+main section {
+    padding: 4rem 2rem;
 }
 
-.hero h1 {
-    font-size: 48px;
-    margin-bottom: 20px;
-    color: var(--accent-color);
+main section:nth-child(even) {
+    background-color: var(--secondary-color);
+    transition: background-color 0.5s ease;
 }
 
-.hero p {
-    font-size: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-    color: var(--text-secondary);
-    line-height: 1.6;
+#section-inverted-world, #section-stranger-things-trailer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
 }
 
-/* Seção de Conteúdo (Cards) */
-.content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-bottom: 60px;
+#section-stranger-things-trailer {
+    flex-direction: row-reverse;
 }
 
-.card {
-    background-color: var(--card-background);
-    border-radius: 12px;
-    padding: 25px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    border: 1px solid var(--card-border);
+.section-texts {
+    flex: 1;
+    min-width: 300px;
 }
 
-.card h2 {
-    font-size: 24px;
-    margin-bottom: 15px;
-    color: var(--accent-color);
-}
-
-.card p {
-    color: var(--text-secondary);
-    line-height: 1.6;
-}
-
-.card-image {
+#section-inverted-world img {
+    max-width: 450px;
     width: 100%;
-    height: 200px;
-    border-radius: 8px;
-    margin-bottom: 15px;
+    border-radius: 10px;
+}
+
+.video-frame {
+    border: 5px solid var(--primary-color);
+    border-radius: 5px;
     overflow: hidden;
 }
 
-.card-image img {
+/* Galeria */
+.gallery-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+.gallery-image {
+    flex: 1;
+    min-width: 250px;
+}
+
+.gallery-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 5px;
+    border: 3px solid var(--primary-color);
+}
+
+/* Formulário */
+#section-form {
+    text-align: center;
+}
+
+#section-form p {
+    max-width: 800px;
+    margin: 0 auto 2rem auto;
+}
+
+.form-content {
+    background-color: var(--secondary-color);
+    padding: 2rem;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    max-width: 600px;
+    margin: 1rem auto;
+    text-align: left;
+}
+
+.form-content h3 {
+    text-align: center;
+}
+
+.form-content span {
+    color: var(--primary-color);
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-container label {
+    font-weight: bold;
+}
+
+.form-container input,
+.form-container textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
 }
 
 /* Rodapé */
 footer {
     text-align: center;
-    padding: 30px 0;
-    margin-top: 40px;
-    border-top: 2px solid var(--accent-color);
-    color: var(--text-secondary);
+    padding: 2rem;
+    border-top: 1px solid #ccc;
 }
 
-/* Media Queries para responsividade */
-@media (max-width: 768px) {
-    .hero h1 {
-        font-size: 36px;
-    }
-    
-    .hero p {
-        font-size: 18px;
-    }
-    
-    .content {
-        grid-template-columns: 1fr;
-    }
+footer img {
+    max-width: 80px;
+    margin-top: 1rem;
 }
